@@ -1,0 +1,7 @@
+{
+  "name": "maria-live-arena-test",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
