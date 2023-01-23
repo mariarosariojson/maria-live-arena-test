@@ -6,6 +6,8 @@ import {
   IonAvatar,
   IonSegment,
   IonNav,
+  IonButton,
+  IonButtons,
 } from "@ionic/react";
 import {
   menuOutline,
@@ -14,6 +16,10 @@ import {
   cart,
   notifications,
   ellipsisVertical,
+  ellipsisHorizontal,
+  personCircle,
+  cartOutline,
+  notificationsOutline,
 } from "ionicons/icons";
 import { Link } from "react-router-dom";
 import Home from "../pages/Home";
@@ -26,32 +32,31 @@ const NavContainer: React.FC<ContainerProps> = () => {
     <nav>
       <IonHeader>
         <IonToolbar>
-          <IonSegment>
-            <IonSegmentButton value="menuOutline">
-              <IonIcon icon={menuOutline}></IonIcon>
-            </IonSegmentButton>
-            <IonSegmentButton value="arrowBack">
-              <IonIcon icon={arrowBack}></IonIcon>
-            </IonSegmentButton>
-            <IonSegmentButton value="serch">
-              <IonIcon icon={search}></IonIcon>
-            </IonSegmentButton>
-            <IonSegmentButton value="cart">
-              <IonIcon icon={cart}></IonIcon>
-            </IonSegmentButton>
-            <IonSegmentButton value="notifications">
-              <IonIcon icon={notifications}></IonIcon>
-            </IonSegmentButton>
-            <IonAvatar>
-              <img
-                alt="Silhouette of a person's head"
-                src="https://ionicframework.com/docs/img/demos/avatar.svg"
-              />
-            </IonAvatar>
-            <IonSegmentButton value="settings">
-              <IonIcon size="3" icon={ellipsisVertical}></IonIcon>
-            </IonSegmentButton>
-          </IonSegment>
+          <IonButtons slot="secondary">
+            <IonButton>
+              <IonIcon slot="icon-only" icon={menuOutline}></IonIcon>
+            </IonButton>
+            <IonButton>
+              <IonIcon slot="icon-only" icon={arrowBack}></IonIcon>
+            </IonButton>
+          </IonButtons>
+          <IonButtons slot="primary">
+            <IonButton>
+              <IonIcon slot="icon-only" icon={search}></IonIcon>
+            </IonButton>
+            <IonButton>
+              <IonIcon slot="icon-only" icon={cartOutline}></IonIcon>
+            </IonButton>{" "}
+            <IonButton>
+              <IonIcon slot="icon-only" icon={notificationsOutline}></IonIcon>
+            </IonButton>
+            <IonButton>
+              <IonIcon slot="icon-only" icon={personCircle}></IonIcon>
+            </IonButton>
+            <IonButton>
+              <IonIcon slot="icon-only" icon={ellipsisVertical}></IonIcon>
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
     </nav>

@@ -15,6 +15,8 @@ import {
 import { useEffect, useState } from "react";
 
 import "./Home.css";
+// import Information from "./Information";
+// import Shopping from "./Shopping";
 
 const Home: React.FC = () => {
   const [info, setInfo] = useState([]) as any;
@@ -35,7 +37,6 @@ const Home: React.FC = () => {
     <IonPage>
       <IonContent fullscreen>
         <IonImg src="https://wallpapercave.com/dwp2x/aYgfwFv.jpg"></IonImg>
-
         <IonGrid>
           <IonRow>
             <IonCol size="12">
@@ -46,7 +47,6 @@ const Home: React.FC = () => {
                 />
                 <IonCardHeader>
                   <IonCardTitle>Card Title</IonCardTitle>
-                  <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
                 </IonCardHeader>
 
                 <IonCardContent>
@@ -61,28 +61,20 @@ const Home: React.FC = () => {
                 <IonCol size="6">
                   <IonCard>
                     <IonCardHeader>
-                      <IonCardTitle>Card Title</IonCardTitle>
                       <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
                     </IonCardHeader>
 
-                    <IonCardContent>
-                      Here's a small text description for the card content.
-                      Nothing more, nothing less.
-                    </IonCardContent>
+                    <IonCardContent>text description.</IonCardContent>
                   </IonCard>
                 </IonCol>
 
                 <IonCol size="6">
                   <IonCard>
                     <IonCardHeader>
-                      <IonCardTitle>Card Title</IonCardTitle>
                       <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
                     </IonCardHeader>
 
-                    <IonCardContent>
-                      Here's a small text description for the card content.
-                      Nothing more, nothing less.
-                    </IonCardContent>
+                    <IonCardContent>Text description.</IonCardContent>
                   </IonCard>
                 </IonCol>
               </IonRow>
@@ -90,28 +82,20 @@ const Home: React.FC = () => {
                 <IonCol size="6">
                   <IonCard>
                     <IonCardHeader>
-                      <IonCardTitle>Card Title</IonCardTitle>
                       <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
                     </IonCardHeader>
 
-                    <IonCardContent>
-                      Here's a small text description for the card content.
-                      Nothing more, nothing less.
-                    </IonCardContent>
+                    <IonCardContent>text description.</IonCardContent>
                   </IonCard>
                 </IonCol>
 
                 <IonCol size="6">
                   <IonCard>
                     <IonCardHeader>
-                      <IonCardTitle>Card Title</IonCardTitle>
                       <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
                     </IonCardHeader>
 
-                    <IonCardContent>
-                      Here's a small text description for the card content.
-                      Nothing more, nothing less.
-                    </IonCardContent>
+                    <IonCardContent>text description.</IonCardContent>
                   </IonCard>
                 </IonCol>
               </IonRow>
