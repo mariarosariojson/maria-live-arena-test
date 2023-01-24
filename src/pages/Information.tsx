@@ -1,21 +1,46 @@
 import {
   IonButton,
+  IonCard,
+  IonCardContent,
   IonCol,
   IonContent,
   IonGrid,
   IonIcon,
   IonImg,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
   IonItem,
   IonLabel,
   IonList,
   IonPage,
+  IonProgressBar,
   IonRow,
-  IonTextarea
 } from "@ionic/react";
 import { arrowForward, cart } from "ionicons/icons";
+import { useState, useEffect } from "react";
+import winnerheads from "../components/data";
 import "./Information.css";
+import { ShoppingType } from "./Shopping";
 
-const Information: React.FC = () => {
+export default function Information() {
+  const [info, setInfo] = useState<ShoppingType[]>([]);
+  const [infoIsLoading, setInfoIsLoading] = useState(false);
+
+  const getItem = async () => {
+    setInfoIsLoading(true);
+    try {
+      const response = await fetch(
+        "https://api.winnerheads.com/api/marketplace/getMarketplaceByIdString/winnerheads"
+      );
+      const data = await response.json();
+      setInfo(data);
+      setInfoIsLoading(false);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    getItem();
+  }, []);
+
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -38,29 +63,35 @@ const Information: React.FC = () => {
             <IonCol size="11">Get winnerheads premium offer</IonCol>
           </IonRow>
           <IonCol size="12" />
-          <IonCol>
-            <IonTextarea readonly={true}>
-              <IonList lines="none">
-                <IonLabel>Why get Premium?</IonLabel>
-                <br />
-                <IonItem>40 hours video cloud storage</IonItem>
-                <IonItem>Organize video in playlist</IonItem>
-                <IonItem>Family sharing</IonItem>
-                <IonItem>Ad free</IonItem>
-              </IonList>
-              <br />
-              <IonList>
-                <b>Roles:</b> Premium can not be used as a team plan. For teams
-                use "Premium for teams" <br />
-                <b>Playlist:</b> Video storage limits number of playlists and
-                user videos.
-              </IonList>
-            </IonTextarea>
-          </IonCol>
         </IonGrid>
+        
+        <IonList lines="none">
+          <IonItem>
+            <IonLabel>
+              <b>Why get Premium?</b>
+            </IonLabel>
+          </IonItem>
+          {winnerheads.space.content?.map((item, index) => (
+              <IonCard>
+                <IonItem key={index}>
+                  <IonCardContent>{item['description']}</IonCardContent>
+                </IonItem>
+              </IonCard>
+            ))}
+          <IonCard>
+            <IonCardContent>
+              Roles: Premium can not be used as a team plan. For teams use
+              "Premium for teams"
+            </IonCardContent>
+          </IonCard>
+          <IonCard>
+            <IonCardContent>
+              Playlist: Video storage limits number of playlists and user
+              videos.
+            </IonCardContent>
+          </IonCard>
+        </IonList>
       </IonContent>
     </IonPage>
   );
-};
-
-export default Information;
+}

@@ -1,11 +1,7 @@
 import {
   IonHeader,
   IonToolbar,
-  IonSegmentButton,
   IonIcon,
-  IonAvatar,
-  IonSegment,
-  IonNav,
   IonButton,
   IonButtons,
 } from "@ionic/react";
@@ -13,16 +9,12 @@ import {
   menuOutline,
   arrowBack,
   search,
-  cart,
-  notifications,
   ellipsisVertical,
-  ellipsisHorizontal,
   personCircle,
   cartOutline,
   notificationsOutline,
 } from "ionicons/icons";
-import { Link } from "react-router-dom";
-import Home from "../pages/Home";
+
 import "./NavContainer.css";
 
 interface ContainerProps {}
@@ -33,10 +25,10 @@ const NavContainer: React.FC<ContainerProps> = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="secondary">
-            <IonButton>
+            <IonButton href="/information">
               <IonIcon slot="icon-only" icon={menuOutline}></IonIcon>
             </IonButton>
-            <IonButton>
+            <IonButton href="/Home">
               <IonIcon slot="icon-only" icon={arrowBack}></IonIcon>
             </IonButton>
           </IonButtons>
@@ -44,9 +36,9 @@ const NavContainer: React.FC<ContainerProps> = () => {
             <IonButton>
               <IonIcon slot="icon-only" icon={search}></IonIcon>
             </IonButton>
-            <IonButton>
+            <IonButton href="/Shopping">
               <IonIcon slot="icon-only" icon={cartOutline}></IonIcon>
-            </IonButton>{" "}
+            </IonButton>
             <IonButton>
               <IonIcon slot="icon-only" icon={notificationsOutline}></IonIcon>
             </IonButton>

@@ -11,27 +11,13 @@ import {
   IonPage,
   IonRow,
 } from "@ionic/react";
-
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./Home.css";
-// import Information from "./Information";
-// import Shopping from "./Shopping";
+import { ShoppingType } from "./Shopping";
 
-const Home: React.FC = () => {
-  const [info, setInfo] = useState([]) as any;
+export default function Home() {
 
-  useEffect(() => {
-    const loadData = async () => {
-      const url =
-        "https://api.winnerheads.com/api/marketplace/getMarketplaceByIdString/winnerheads";
-      const data = await fetch(url);
-      const json = await data.json();
-      setInfo(json.results);
-      console.log("🚀 ~ file: Home.tsx:22 ~ loadData ~ json", json);
-    };
-    loadData();
-  }, []);
 
   return (
     <IonPage>
@@ -105,6 +91,4 @@ const Home: React.FC = () => {
       </IonContent>
     </IonPage>
   );
-};
-
-export default Home;
+}

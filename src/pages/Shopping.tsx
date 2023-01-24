@@ -1,38 +1,50 @@
 import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
   IonContent,
   IonHeader,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
   IonItem,
+  IonItemOption,
   IonLabel,
   IonList,
   IonPage,
+  IonProgressBar,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
 import { useState, useEffect } from "react";
 
+import winnerheads from "../components/data";
+
 import "./Shopping.css";
 
-interface ShoppingType {
-  id: number;
-  idString: string;
-  space: {
-    content: [shoppingItem: [id: number, name: string, description: string]];
-  };
-}
+export type ShoppingType = {
+  name: string;
+  description: string;
+  price: number;
+};
 
-const Shopping: React.FC = () => {
+export default function Shopping() {
   const [info, setInfo] = useState<ShoppingType[]>([]);
+  const [infoIsLoading, setInfoIsLoading] = useState(false);
 
+  const getItem = async () => {
+    setInfoIsLoading(true);
+    try {
+      const response = await fetch(
+        "https://api.winnerheads.com/api/marketplace/getMarketplaceByIdString/winnerheads"
+      );
+      const data = await response.json();
+      setInfo(data);
+      setInfoIsLoading(false);
+    } catch (error) {}
+  };
   useEffect(() => {
-    const loadData = async () => {
-      const url =
-        "https://api.winnerheads.com/api/marketplace/getMarketplaceByIdString/winnerheads";
-      const data = await fetch(url);
-      const json = await data.json();
-      setInfo(json.results);
-      // console.log("🚀 ~ file: Home.tsx:22 ~ loadData ~ json", json);
-    };
-    loadData();
+    getItem();
   }, []);
 
   return (
@@ -42,18 +54,28 @@ const Shopping: React.FC = () => {
           <IonTitle>Shopping</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        Shopping item page
-        <IonList>
-          {info.map((item, index) => (
-            <IonItem key={index}>
-              <IonLabel>{item.space.content[0][2]}</IonLabel>
-            </IonItem>
-          ))}
+      <IonItem>
+        <h1>ShoppingItems</h1>
+      </IonItem>
+      <IonContent color="light" fullscreen>
+        <IonList lines="full">
+          {infoIsLoading ? (
+            <IonProgressBar type="indeterminate" />
+          ) : (
+            winnerheads.space.content?.map((item, index) => (
+              <IonCard>
+                <IonItem key={index}>
+                  <IonLabel>{item["title"]}</IonLabel>
+                </IonItem>
+                <IonCardContent>
+                  <IonLabel>{item.shoppingItem?.name}</IonLabel>
+                  <IonLabel>{item["description"]}</IonLabel>
+                </IonCardContent>
+              </IonCard>
+            ))
+          )}
         </IonList>
       </IonContent>
     </IonPage>
   );
-};
-
-export default Shopping;
+}
